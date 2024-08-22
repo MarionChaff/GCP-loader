@@ -27,7 +27,7 @@ class GCPFileUploader:
             #files = [file for file in os.scandir(local_directory) if file.name.endswith('.mid')]
 
             for k, file in enumerate(files):
-                blob_path = os.path.join(gcp_directory, file)
+                blob_path = os.path.join(gcp_directory, os.path.basename(file))
                 blob = bucket.blob(blob_path)
                 blob.upload_from_filename(file)
                 print(f'Upload {k + 1}/{len(files)} completed')
